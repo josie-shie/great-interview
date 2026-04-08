@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useInterviewStore } from '../../store/interviewStore'
-import { generateQuestions } from '../../services/aiService'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useInterviewStore } from "../../store/interviewStore";
+import { generateQuestions } from "../../services/aiService";
 import {
   Box,
   Button,
@@ -12,36 +12,45 @@ import {
   MenuItem,
   Select,
   Typography,
-} from '@mui/material'
-import './Home.scss'
+} from "@mui/material";
+import "./Home.scss";
 
-const JOB_TITLES = ['UI Developer', 'Frontend Engineer']
-const JOB_LEVELS = ['Intern', 'Junior', 'Mid-level', 'Senior', 'Lead / Manager']
+const JOB_TITLES = ["UI Developer", "Frontend Engineer"];
+const JOB_LEVELS = [
+  "Intern",
+  "Junior",
+  "Mid-level",
+  "Senior",
+  "Lead / Manager",
+];
 
 export default function Home() {
-  const navigate = useNavigate()
-  const { setQuestions, reset } = useInterviewStore()
-  const [jobTitle, setJobTitle] = useState('')
-  const [jobLevel, setJobLevel] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const navigate = useNavigate();
+  const { setQuestions, reset } = useInterviewStore();
+  const [jobTitle, setJobTitle] = useState("");
+  const [jobLevel, setJobLevel] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleStart = async () => {
-    setError('')
-    setLoading(true)
+    setError("");
+    setLoading(true);
     try {
-      reset()
-      const questions = await generateQuestions(jobTitle, jobLevel)
-      setQuestions(questions)
-      navigate('/interview')
-    } catch {
-      setError('Failed to generate questions. Please check your API key and try again.')
+      reset();
+      const questions = await generateQuestions(jobTitle, jobLevel);
+      setQuestions(questions);
+      navigate("/interview");
+    } catch (e) {
+      console.error(e);
+      setError(
+        "Failed to generate questions. Please check your API key and try again.",
+      );
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const isReady = jobTitle && jobLevel && !loading
+  const isReady = jobTitle && jobLevel && !loading;
 
   return (
     <Container maxWidth="sm">
@@ -50,7 +59,8 @@ export default function Home() {
           Great Interview
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Select your position and level, then start the interview. Questions will be tailored to your role.
+          Select your position and level, then start the interview. Questions
+          will be tailored to your role.
         </Typography>
 
         <Box className="home-selects">
@@ -62,7 +72,9 @@ export default function Home() {
               onChange={(e) => setJobTitle(e.target.value)}
             >
               {JOB_TITLES.map((title) => (
-                <MenuItem key={title} value={title}>{title}</MenuItem>
+                <MenuItem key={title} value={title}>
+                  {title}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -75,7 +87,9 @@ export default function Home() {
               onChange={(e) => setJobLevel(e.target.value)}
             >
               {JOB_LEVELS.map((level) => (
-                <MenuItem key={level} value={level}>{level}</MenuItem>
+                <MenuItem key={level} value={level}>
+                  {level}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -92,11 +106,13 @@ export default function Home() {
           size="large"
           onClick={handleStart}
           disabled={!isReady}
-          startIcon={loading ? <CircularProgress size={18} color="inherit" /> : null}
+          startIcon={
+            loading ? <CircularProgress size={18} color="inherit" /> : null
+          }
         >
-          {loading ? 'Generating Questions...' : 'Start Interview'}
+          {loading ? "Generating Questions..." : "Start Interview"}
         </Button>
       </Box>
     </Container>
-  )
+  );
 }
