@@ -18,6 +18,18 @@ export default function Review() {
   const { answers, questions } = useInterviewStore()
   const navigate = useNavigate()
 
+  if (answers.length === 0) {
+    return (
+      <Container maxWidth="md">
+        <Box className="review-root">
+          <Typography variant="h4" fontWeight={600}>Review Your Answers</Typography>
+          <Typography color="text.secondary">No answers recorded yet.</Typography>
+          <Button variant="contained" onClick={() => navigate('/')}>Go to Home</Button>
+        </Box>
+      </Container>
+    )
+  }
+
   return (
     <Container maxWidth="md">
       <Box className="review-root">

@@ -54,7 +54,10 @@ export default function Interview() {
     stopRecording()
   }
 
-  if (!currentQuestion) return null
+  if (!currentQuestion) {
+    navigate('/')
+    return null
+  }
 
   return (
     <Container maxWidth="md">
