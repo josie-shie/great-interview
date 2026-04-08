@@ -8,4 +8,11 @@
     gap: 24px;
     text-align: center;
   }
+
+  &-selects {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
 }
