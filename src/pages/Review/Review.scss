@@ -1,0 +1,33 @@
+.review {
+  &-root {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 0;
+  }
+
+  &-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &-video {
+    width: 100%;
+    border-radius: 4px;
+    background-color: black;
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

@@ -12,6 +12,7 @@ import {
 } from '@mui/material'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import ReplayIcon from '@mui/icons-material/Replay'
+import './Review.scss'
 
 export default function Review() {
   const { answers, questions } = useInterviewStore()
@@ -19,7 +20,7 @@ export default function Review() {
 
   return (
     <Container maxWidth="md">
-      <Box display="flex" flexDirection="column" gap={3} py={4}>
+      <Box className="review-root">
         <Typography variant="h4" fontWeight={600}>
           Review Your Answers
         </Typography>
@@ -34,8 +35,8 @@ export default function Review() {
 
           return (
             <Card key={i} elevation={2} sx={{ borderRadius: 2 }}>
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Box display="flex" justifyContent="space-between" alignItems="flex-start" flexWrap="wrap" gap={1}>
+              <CardContent className="review-card-content">
+                <Box className="review-card-header">
                   <Typography variant="h6">
                     Q{i + 1}: {question?.text}
                   </Typography>
@@ -50,14 +51,14 @@ export default function Review() {
                   component="video"
                   src={videoUrl}
                   controls
-                  sx={{ width: '100%', borderRadius: 1, bgcolor: 'black' }}
+                  className="review-video"
                 />
               </CardContent>
             </Card>
           )
         })}
 
-        <Box display="flex" justifyContent="flex-end">
+        <Box className="review-actions">
           <Button
             variant="outlined"
             startIcon={<ReplayIcon />}

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useInterviewStore } from '../../store/interviewStore'
 import { questions } from '../../data/questions'
 import { Box, Button, Container, Typography } from '@mui/material'
+import './Home.scss'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -15,15 +16,7 @@ export default function Home() {
 
   return (
     <Container maxWidth="sm">
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        minHeight="100vh"
-        gap={3}
-        textAlign="center"
-      >
+      <Box className="home-wrapper">
         <Typography variant="h3" fontWeight={600}>
           Great Interview
         </Typography>

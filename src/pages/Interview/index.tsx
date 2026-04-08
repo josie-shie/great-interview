@@ -13,6 +13,7 @@ import {
   Typography,
 } from '@mui/material'
 import TimerIcon from '@mui/icons-material/Timer'
+import './Interview.scss'
 
 export default function Interview() {
   const navigate = useNavigate()
@@ -57,17 +58,17 @@ export default function Interview() {
 
   return (
     <Container maxWidth="md">
-      <Box display="flex" flexDirection="column" gap={3} py={4}>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box className="interview-root">
+        <Box className="interview-header">
           <Typography variant="subtitle1" color="text.secondary">
             Question {currentIndex + 1} / {questions.length}
           </Typography>
           <Chip icon={<TimerIcon />} label={`${seconds}s`} variant="outlined" color="primary" />
         </Box>
 
-        <LinearProgress variant="determinate" value={progress} sx={{ borderRadius: 1 }} />
+        <LinearProgress className="interview-progress" variant="determinate" value={progress} />
 
-        <Paper elevation={2} sx={{ p: 3, borderRadius: 2 }}>
+        <Paper className="interview-question-card" elevation={2}>
           <Typography variant="h6">{currentQuestion.text}</Typography>
         </Paper>
 
@@ -77,15 +78,10 @@ export default function Interview() {
           autoPlay
           muted
           playsInline
-          sx={{
-            width: '100%',
-            borderRadius: 2,
-            bgcolor: 'black',
-            aspectRatio: '16 / 9',
-          }}
+          className="interview-video"
         />
 
-        <Box display="flex" justifyContent="flex-end">
+        <Box className="interview-actions">
           <Button variant="contained" size="large" onClick={handleNext}>
             {isLastQuestion ? 'Finish' : 'Next'}
           </Button>

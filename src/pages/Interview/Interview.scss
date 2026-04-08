@@ -1,0 +1,31 @@
+.interview {
+  &-root {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 0;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-question-card {
+    padding: 24px;
+    border-radius: 8px;
+  }
+
+  &-video {
+    width: 100%;
+    border-radius: 8px;
+    background-color: black;
+    aspect-ratio: 16 / 9;
+  }
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
